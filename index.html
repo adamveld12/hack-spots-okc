@@ -64,9 +64,9 @@
     <script id="hackSpotsTable" type="text/html">
       <table>
         <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Elsewhere</th>
+          <th style="width: 35%;">Name</th>
+          <th style="width: 60%;" >Address</th>
+          <th >Elsewhere</th>
         </tr>
         {{#rows}}
           <tr id="{{rowNumber}}" class="spotRow">
@@ -98,13 +98,13 @@
           <p class="colorText">{{address}}, {{postcode}}</p>
         </div>
         <ul>
-          <li><span>Wifi Name:</span> {{wifiname}}</li>
-          <li><span>Password:</span> {{wifipassword}}</li>
-          <li><span>Outlets:</span> {{outlets}}</li>
-          <li><span>Couch:</span> {{couch}}</li>
-          <li><span>Large Table:</span> {{largetable}}</li>
-          <li><span>Outdoor Seating:</span> {{outdoorseating}}</li>
-          <li><span>Details:</span> <p>{{details}}</p></li>
+          <li><span class="category">Wifi Name:</span> {{wifiname}}</li>
+          <li><span class="category">Password:</span> {{wifipassword}}</li>
+          <li><span class="category">Outlets:</span> {{outlets}}</li>
+          <li><span class="category">Couch:</span> {{couch}}</li>
+          <li><span class="category">Large Table:</span> {{largetable}}</li>
+          <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
+          <li><p>{{details}}</p></li>
         </ul>
         <ul class="external-links">
           <li><a href="https://maps.google.com/maps?q={{address}},Oklahoma City,Oklahoma" target="_blank">View in Google Maps</a></li>

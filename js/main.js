@@ -54,11 +54,14 @@
 
       var dataElement = Sheetsee.getMatches(gData, rowNum, "rowNumber");
       console.log(dataElement[0]);
-      map.setView([dataElement[0].lat, dataElement[0].long], 18, {animate:true, duration: 1.25});
+      map.setView([dataElement[0].lat, dataElement[0].long], 18, {animate:true, duration: 2.25});
       //map.panTo([dataElement[0].lat, dataElement[0].long], {animate: true, duration: 1.25});
 
       $('#selectedSpot').html(ich.selectedSpot({ rows: dataElement }))
                         .css("display", "inline");
+
+      var top = document.getElementById("map").offsetTop; 
+      window.scrollTo(0, top);   
     });
 
     // so that the first map and info that loads

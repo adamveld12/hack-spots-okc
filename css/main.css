@@ -13,21 +13,6 @@ body {
   font-size: 10px;
 }
 
-.nav a {
-  color: #666;
-  border-style: none;
-  text-decoration: none;
-}
-
-.nav a:hover {
-  color: #47CCFC;
-  border-bottom: 1px #FD9393 solid;
-}
-
-.nav a:visited {
-  color: #999;
-  border-style: none;
-}
 
 .nav ul {
   text-transform: uppercase;
@@ -94,6 +79,7 @@ body {
 #selectedSpot ul {
   list-style-type: none;
   -webkit-padding-start: 0;
+  font-size: 14px;
 }
 
 #selectedSpot .external-links li {
@@ -105,18 +91,75 @@ body {
   margin: 0 auto 2em auto;
 }
 
+#tableFilter {
+  margin: 12px 0px;
+  border: none;
+  border-bottom: 1px solid #333;
+  background-color: transparent;
+  padding: 0px;
+  font-family: Lato;
+  color: #333;
+  font-size: 13px;
+  height: 22px;
+  width: 33%;
+}
+
 .hackspots {
-  margin-top: 2em;
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 
 .hackspots table {
   width: 100%;
+  cursor: pointer;
 }
 
 .hackspots th {
   color: #888;
+  text-align: left;
+  margin-bottom: 2em;
 }
 
-.hackspots tr {
+.spotRow td {
+  padding: 5px 2px;
 }
 
+.spotRow:hover {
+  color: #47CCFC;
+}
+
+.button:hover {
+  background: #B9FCFC;
+  color: #47CCFC;
+  cursor: hand;
+}
+
+.button {
+  padding: 5px 5px;
+  background-color: #BEBEBE;
+  font-size: 10px;
+  color: #fff;
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: .2em;
+  padding-right: 6px;
+}
+
+a {
+  color: #666;
+  border-style: none;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #47CCFC;
+  border-bottom: 1px #FD9393 solid;
+}
+
+a:visited {
+  color: #999;
+  border-style: none;
+}

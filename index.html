@@ -24,7 +24,10 @@
   <body>
       <h1>OKC Hack Spots</h1>
       <div class="nav">
-        <p>For all of the OKC laptop nomads</p>
+        <div class="header">
+          <h2>For all of the OKC laptop nomads </h2>  
+          <div id="theNumberofSpots"></div>
+        </div>
         <ul>
           <li><a href="#info">About</a></li>
           <li><a href="http://jlord.github.com/sheetsee.js" target="_blank">POWERED BY SHEETSEE.JS</a></li>
@@ -61,9 +64,9 @@
     <script id="hackSpotsTable" type="text/html">
       <table>
         <tr>
-          <th class="tHeader">Name</th>
-          <th class="tHeader">Address</th>
-          <th class="">Elsewhere</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Elsewhere</th>
         </tr>
         {{#rows}}
           <tr id="{{rowNumber}}" class="spotRow">
@@ -74,39 +77,14 @@
              <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc=Oklahoma City,Oklahoma" target="_blank">Yelp</a>
            </td>
           </tr>
-          <tr class="hideRow">
-            <td>wifi: {{wifipassword}}</td>
-          </tr>
         {{/rows}}
       </table>
     </script>
 
-    <script id="latestSpot" type="text/html">
-        {{#rows}}
-          <h4 class="fauxButton">MOST RECENT SPOT</h4>
-          <h2>{{name}}</h2>
-          <p class="colorText">{{address}}, {{postcode}}<p>
-          <ul>
-            <li><span class="category">Wifi Name:</span> {{wifiname}}</li>
-            <li><span class="category">Wifi:</span> {{wifipassword}}</li>
-            <li><span class="category">Outlets:</span> {{outlets}}</li>
-            <li><span class="category">Couch:</span> {{couch}}</li>
-            <li><span class="category">Large Table:</span> {{largetable}}</li>
-            <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
-            <li><span class="category">Brewing:</span> {{brewing}}</li>
-            <li>
-              <span class="category">Contributed By:</span> <a href="http://www.twitter.com/{{contributerstwitter}}" target="_blank">@{{contributerstwitter}}</a>
-            </li>
-          </ul>
-          <ul>
-            <li><a href="https://maps.google.com/maps?q={{address}},Oklahoma City,Oklahoma" target="_blank">View in Google Maps</a></li>
-            <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc=Oklahoma City,Oklahoma" target="_blank">Find on Yelp</a></li>
-          </ul>
-        {{/rows}}
-    </script>
-
     <script id="theNumberofSpots" type="text/html">
-      <p><strong><span class="red-text">{{numberOfSpots}}</span> hack spots strong!</p>
+      <p>
+        <span style="color: red;">{{numberOfSpots}}</span> hack spots discovered so far!
+      </p>
     </script>
 
     <script id="popUps" type="text/html">
@@ -115,162 +93,27 @@
 
     <script id="selectedSpot" type="text/html">
       {{#rows}}
-        <h4 class="fauxButton">SELECTED SPOT</h4>
-        <h2>{{name}}</h2>
-        <p class="colorText">{{address}}, {{postcode}}<p>
+        <div class="header">
+          <h2>{{name}}</h2>
+          <p class="colorText">{{address}}, {{postcode}}</p>
+        </div>
         <ul>
-          <li><span class="category">Wifi Name:</span> {{wifiname}}</li>
-          <li><span class="category">Password:</span> {{wifipassword}}</li>
-          <li><span class="category">Outlets:</span> {{outlets}}</li>
-          <li><span class="category">Couch:</span> {{couch}}</li>
-          <li><span class="category">Large Table:</span> {{largetable}}</li>
-          <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
-          <li><span class="category">Details:</span> {{details}}</li>
+          <li><span>Wifi Name:</span> {{wifiname}}</li>
+          <li><span>Password:</span> {{wifipassword}}</li>
+          <li><span>Outlets:</span> {{outlets}}</li>
+          <li><span>Couch:</span> {{couch}}</li>
+          <li><span>Large Table:</span> {{largetable}}</li>
+          <li><span>Outdoor Seating:</span> {{outdoorseating}}</li>
+          <li><span>Details:</span> <p>{{details}}</p></li>
         </ul>
-        <ul>
+        <ul class="external-links">
           <li><a href="https://maps.google.com/maps?q={{address}},Oklahoma City,Oklahoma" target="_blank">View in Google Maps</a></li>
           <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc=Oklahoma City,Oklahoma" target="_blank">Find on Yelp</a></li>
         </ul>
       {{/rows}}
     </script>
 
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
-        var gData
-        var URL = "1IP_0vxifIw6cW6UP-vH0l-GvWBPA1NDG7j4cT17AKKs"
-        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
-      })
+		<script type="text/javascript" src="js/main.js"></script>
 
-      // so long, so messy
-
-      function showInfo(gData) {
-        gData
-        // make the table, and the search bar
-        Sheetsee.makeTable(gData, "#hackSpotsTable")
-        Sheetsee.initiateTableFilter(gData, "#tableFilter", "#hackSpotsTable")
-
-        // when someone clicks on a row, highlight it and
-        // re-center the map
-        $('.spotRow').live("click", function(event) {
-          $('.spotRow').removeClass("selectedRow")
-          var rowNumber = $(this).closest("tr").attr("id")
-          $('#' + rowNumber).addClass("selectedRow")
-          var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
-          var selectedSpot = ich.selectedSpot({
-            rows: dataElement
-          })
-          $('#latestSpot').css("display", "none")
-          $('#selectedSpot').html(selectedSpot).css("display", "inline")
-          var selectedCoords = [dataElement[0].lat, dataElement[0].long]
-          matchGeoJSONbyRowNumber(rowNumber, geoJSON, gData, "#FF4646")
-          var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
-          addPopups(map, markerLayer)
-          map.panTo(selectedCoords, 13)
-        })
-
-        // so that the first map and info that loads
-        // is complete and doesn't show rows that are
-        // actively being edited by folk
-        function findLatestCompleteSpot(data) {
-          var latestCompleteSpot = []
-          var startWithLatestRow = data.reverse()
-          startWithLatestRow.forEach(function(row){
-            if (row.lat && row.long && row.name && row.address)
-              latestCompleteSpot.push(row)
-          })
-          return latestCompleteSpot[0]
-        }
-
-        // find the latest spot with the most important
-        // info filled in (to prevent map breaking if
-        // someone is currently editing spreadsheet)
-        var theLatestSpot = findLatestCompleteSpot(gData)
-        var latestSpot = ich.latestSpot({
-           rows: theLatestSpot
-        })
-        $('#latestSpot').html(latestSpot)
-
-        function highlightLastMarker(geoJSON, highlightColor) {
-          geoJSON[0].properties["marker-color"] = highlightColor
-          return geoJSON
-        }
-
-        // create geoJSON with coordinates and other
-        // useful bits from the original data
-        var optionsJSON = ["name", "address", "city", "rowNumber"]
-        var geoJSONnoHL = Sheetsee.createGeoJSON(gData, optionsJSON)
-        // change the color of the most recently added spot's marker
-        var geoJSON = highlightLastMarker(geoJSONnoHL, "#FF4646")
-
-        // create map, tilelayer (map background), markers and popups
-        var map = Sheetsee.loadMap("map")
-        Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-        var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
-        addPopups(map, markerLayer)
-
-        // design the popups to have the content and
-        // interactions that we want
-        function addPopups(map, markerLayer) {
-          markerLayer.eachLayer(function(marker) {
-            var popupContent = ich.popUps(marker.feature.opts)
-            marker.bindPopup(popupContent, {closeButton: false,})
-          })
-          markerLayer.on('click', function(e) {
-          // clear any selected rows
-          $('.spotRow').removeClass("selectedRow")
-          // get row number of selected marker
-          var rowNumber = e.layer.feature.opts.rowNumber.toString()
-          // find that row in the table and make consider it selected
-          $('#' + rowNumber).addClass("selectedRow")
-          // using row number, find that marker in the geoJSON, give it
-          // the selected marker color
-          matchGeoJSONbyRowNumber(rowNumber, geoJSON, gData, "#FF4646")
-         //  var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
-          // addPopups(map, markerLayer)
-          // using row number, get the data for the selected spot
-          var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
-          // take those details and re-write the selected spot section
-          var selectedSpot = ich.selectedSpot({
-            rows: dataElement
-          })
-          $('#latestSpot').css("display", "none")
-          $('#selectedSpot').html(selectedSpot).css("display", "inline")
-          })
-        }
-
-        $('.resetMap').click(function() {
-          $('.spotRow').removeClass("selectedRow")
-          markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
-          addPopups(map, markerLayer)
-          $('#latestSpot').css("display", "inline")
-          $('#selectedSpot').css("display", "none")
-        })
-
-        // find total number of spots added
-        var numberOfSpots = gData.length
-        var theNumberofSpots = ich.theNumberofSpots({
-          numberOfSpots: numberOfSpots
-        })
-        $('#theNumberofSpots').html(theNumberofSpots)
-
-        function matchGeoJSONbyRowNumber(rowNumber, geoJSON, gdata, highlightColor) {
-          geoJSON.forEach(function (d) {
-            if (d.properties["marker-color"] === highlightColor) {
-              var origColor = gData[0].hexcolor
-              d.properties["marker-color"] = origColor
-            }
-            for (var key in d.opts) {
-              var value = d.opts[key].toString().toLowerCase()
-              if (key === 'rowNumber' && value.match(rowNumber.toString().toLowerCase())) {
-                d.properties["marker-color"] = highlightColor
-                return geoJSON
-              }
-            }
-          })
-        }
-
-    }
-
-    </script>
   </body>
 </html>

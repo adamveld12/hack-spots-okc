@@ -1,14 +1,36 @@
 body {
+  font-family: Lato;
   max-width: 100%;
   max-height: 100%;
   padding: 0 5%;
   margin: 0;
+  margin-top: 25px;
+  font-size: 16px;
 }
 
+
 .nav {
+  font-size: 10px;
+}
+
+.nav a {
+  color: #666;
+  border-style: none;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: #47CCFC;
+  border-bottom: 1px #FD9393 solid;
+}
+
+.nav a:visited {
+  color: #999;
+  border-style: none;
 }
 
 .nav ul {
+  text-transform: uppercase;
   width: 100%;
   list-style-type: none;
   padding-left: 0;
@@ -26,6 +48,20 @@ body {
   content: "";
 }
 
+.nav .header h2 {
+  display: inline;
+  max-width:100%;
+}
+
+#theNumberOfSpots {
+  display: inline;
+  margin-left: 10px;
+}
+
+#theNumberofSpots p {
+  display: inline;
+}
+
 #map {
   max-height: 500px;
   height: 400px;
@@ -34,7 +70,36 @@ body {
   background: #DADADA;
 }
 
-.selectedspot {}
+#selectedSpot {
+  border-bottom: 1px black solid;
+  margin-bottom: 1em;
+}
+
+#selectedSpot .header h2 {
+  display: inline;
+}
+
+#selectedSpot .header p {
+  margin-left: 25px;
+  display: inline;
+}
+
+#selectedSpot .header {
+  background-color: #FF4646;
+  padding: 10px 1em;
+  color: #FFFFFF;
+  max-width: 35%;
+}
+
+#selectedSpot ul {
+  list-style-type: none;
+  -webkit-padding-start: 0;
+}
+
+#selectedSpot .external-links li {
+  display: inline;
+  margin-right: 1em;
+}
 
 .searchbox {
   margin: 0 auto 2em auto;

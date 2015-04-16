@@ -44,7 +44,7 @@ ul.nav li a:hover {border-bottom: 1px #FD9393 solid;}
 
 .leaflet-popup-content h2 {font-family: Lato; font-size: 14px; text-transform: uppercase;}
 
-#rightSide {height: 400px; max-width: 350px; width: 100%; float: right; padding-top: 5px;}
+#rightSide {margin-top: 15px; height: 400px; max-width: 100%; width: 100%; padding-top: 5px;}
 #selectedSpot {display: none;}
 #latestSpot ul, #selectedSpot ul {list-style: none; margin-top: 12px 0px; padding: 0px;}
 .category {text-transform: uppercase; font-size: 9px; letter-spacing: .2em; padding-right: 6px;}

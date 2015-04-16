@@ -1,0 +1,57 @@
+body {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0 5%;
+  margin: 0;
+}
+
+.nav {
+}
+
+.nav ul {
+  width: 100%;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.nav li {
+  display: inline;
+}
+
+.nav li::after {
+  content: " - ";
+}
+
+.nav li:last-of-type::after {
+  content: "";
+}
+
+#map {
+  max-height: 500px;
+  height: 400px;
+  width: 100%;
+  margin: 0 auto 2em auto;
+  background: #DADADA;
+}
+
+.selectedspot {}
+
+.searchbox {
+  margin: 0 auto 2em auto;
+}
+
+.hackspots {
+  margin-top: 2em;
+}
+
+.hackspots table {
+  width: 100%;
+}
+
+.hackspots th {
+  color: #888;
+}
+
+.hackspots tr {
+}
+

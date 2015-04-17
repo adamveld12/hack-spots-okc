@@ -1,5 +1,5 @@
 body {
-  font-family: Lato;
+  font-family: Roboto;
   max-width: 100%;
   max-height: 100%;
   padding: 0 5%;
@@ -8,6 +8,16 @@ body {
   font-size: 16px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: Amatic SC;
+}
+
+h1 {
+  font-size: 5em;
+}
+h2 {
+  font-size: 3em;
+}
 
 .nav {
   font-size: 10px;
@@ -121,11 +131,15 @@ body {
 }
 
 .spotRow td {
-  padding: 5px 2px;
+  padding: 5px 0;
 }
 
 .spotRow:hover {
   color: #47CCFC;
+}
+
+#info {
+  margin-bottom: 50px;
 }
 
 .button:hover {
@@ -163,3 +177,4 @@ a:visited {
   color: #999;
   border-style: none;
 }
+

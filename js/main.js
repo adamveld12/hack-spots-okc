@@ -17,17 +17,26 @@
   function generateTable(sheetData){
     Sheetsee.makeTable(sheetData, "#hackSpotsTable");
     Sheetsee.initiateTableFilter(sheetData, "#tableFilter", "#hackSpotsTable");
-
   }
 
   function showInfo(gData) {
+    gData = gData.filter(function(row){
+      return row.name && row.address && row.lat && row.long;
+    });
+
+    gData.forEach(function(row){
+      for (var p in row) {
+        if (!row[p] && p !== "details")
+          row[p] = "Not Specified";
+      }
+    });
+
     // find total number of spots added
     $('#theNumberofSpots').html(ich.theNumberofSpots({ 
       numberOfSpots: gData.length 
     }));
 
     generateTable(gData);
-
 
     $("#hackSpotsTable").live("click", function(event){
 
@@ -55,7 +64,6 @@
       var dataElement = Sheetsee.getMatches(gData, rowNum, "rowNumber");
       console.log(dataElement[0]);
       map.setView([dataElement[0].lat, dataElement[0].long], 18, {animate:true, duration: 2.25});
-      //map.panTo([dataElement[0].lat, dataElement[0].long], {animate: true, duration: 1.25});
 
       $('#selectedSpot').html(ich.selectedSpot({ rows: dataElement }))
                         .css("display", "inline");

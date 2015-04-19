@@ -71,19 +71,21 @@ h2 {
 }
 
 #selectedSpot .header h2 {
-  display: inline;
+  float: left;
+  margin: auto 0;
 }
 
 #selectedSpot .header p {
-  margin-left: 25px;
-  display: inline;
+  float: left;
+  margin: 20px 0 auto 25px;
+  font-size: 1.2em;
 }
 
 #selectedSpot .header {
   background-color: #FF4646;
   padding: 10px 1em;
   color: #FFFFFF;
-  max-width: 35%;
+  max-width: 46%;
 }
 
 #selectedSpot ul {

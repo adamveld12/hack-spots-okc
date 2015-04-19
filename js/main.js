@@ -26,7 +26,7 @@
 
     gData.forEach(function(row){
       for (var p in row) {
-        if (!row[p] && p !== "details")
+        if (!row[p] && p !== "details" && p !== "hexcolor")
           row[p] = "Not Specified";
       }
     });

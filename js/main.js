@@ -110,7 +110,7 @@
 
     // create map, tilelayer (map background), markers and popups
     var map = Sheetsee.loadMap("map");
-    Sheetsee.addTileLayer(map, 'jllord.n7aml2bc');
+    Sheetsee.addTileLayer(map, 'adamveld12.o1086h8f');
     var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13);
     addPopups(map, markerLayer);
 
